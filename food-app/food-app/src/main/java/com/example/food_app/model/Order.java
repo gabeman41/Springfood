@@ -4,6 +4,8 @@ package com.example.food_app.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,7 +18,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private User user;
+    private User customer;
 
     @ManyToOne
     private Dish dish;
@@ -25,7 +27,7 @@ public class Order {
 
     private String orderStatus;
 
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     private Address deliveryAddress;
