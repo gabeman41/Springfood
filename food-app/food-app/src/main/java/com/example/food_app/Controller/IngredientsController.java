@@ -3,8 +3,11 @@ package com.example.food_app.Controller;
 import com.example.food_app.Request.IngredientCategoryRequest;
 import com.example.food_app.Request.IngredientItemRequest;
 import com.example.food_app.Service.IngredientsService;
+import com.example.food_app.Service.UserService;
 import com.example.food_app.model.IngredientCategory;
 import com.example.food_app.model.IngredientItem;
+import com.example.food_app.model.User;
+import com.example.food_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,8 @@ import java.util.List;
 @RequestMapping("/api/admin/ingredients")
 @RequiredArgsConstructor
 public class IngredientsController {
-    IngredientsService ingredientsService;
+    private final IngredientsService ingredientsService;
+    private final UserService userService;
 
     @PostMapping("/category")
     public ResponseEntity<IngredientCategory> createIngredientCategory(
@@ -36,8 +40,8 @@ public class IngredientsController {
         return new ResponseEntity<>(item,HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/stoke")
-    public ResponseEntity<IngredientItem> updateIngredientStoke(
+    @PutMapping("/{id}/stock")
+    public ResponseEntity<IngredientItem> updateIngredientStock(
             @PathVariable Long id
     )throws Exception{
         IngredientItem item = ingredientsService.updateStock(id);

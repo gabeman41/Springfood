@@ -27,16 +27,16 @@ import java.util.Collection;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    UserRepository userRepository;
-    PasswordEncoder passwordEncoder;
-    JwtProvider jwtProvider;
-    CustomerUserDetailsService service;
-    CartRepository cartRepository;
+   private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
+    private final CustomerUserDetailsService service;
+    private final CartRepository cartRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse>CreateUserHandler(@RequestBody User user) throws Exception {
        User isEmailExist = userRepository.findByEmail(user.getEmail());
-       if(isEmailExist != null){
+       if(isEmailExist != null ){
            throw new Exception("Email is already used with another account");
        }
        // if its null we create the user

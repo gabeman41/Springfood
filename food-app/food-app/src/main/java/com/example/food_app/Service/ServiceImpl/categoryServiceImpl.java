@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class categoryServiceImpl implements CategoryService {
-    DishService dishService;
-    CategoryRepository categoryRepository;
+   private final DishService dishService;
+    private final  CategoryRepository categoryRepository;
 
     @Override
     public Category createCategory(String name, Long userId) throws Exception {
@@ -29,9 +29,9 @@ public class categoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> findCategoryByDishId(Long Id) throws Exception {
-        Dish dish = dishService.getDishByUserId(Id);
-        return categoryRepository.findByDishId(Id);
+    public List<Category> findCategoryByDishId(Long id) throws Exception {
+        Dish dish = dishService.getDishByUserId(id);
+        return categoryRepository.findByDishId(id);
     }
 
     @Override

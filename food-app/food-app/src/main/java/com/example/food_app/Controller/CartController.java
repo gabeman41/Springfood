@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class CartController {
-    CartService cartService;
-    UserService userService;
+    private final CartService cartService;
+    private final UserService userService;
 
     @PutMapping("cart/add")
     public ResponseEntity<CartItem> addItemToCart(

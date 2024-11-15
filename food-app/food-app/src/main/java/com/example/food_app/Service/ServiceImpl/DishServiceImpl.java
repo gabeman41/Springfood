@@ -19,9 +19,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
-    DishRepository dishRepository;
-    AddressRepository addressRepository;
-    UserRepository userRepository;
+    private final  DishRepository dishRepository;
+    private final  AddressRepository addressRepository;
+    private final  UserRepository userRepository;
 
     @Override
     public Dish createDish(CreateDishRequest request, User user) throws Exception {
@@ -115,7 +115,7 @@ public class DishServiceImpl implements DishService {
     @Override
     public Dish updateDishStatues(Long Id) throws Exception {
         Dish dish = findDishById(Id);
-        dish.setAvailable(!dish.isAvailable());
+        dish.setOpen(!dish.isOpen());
         return dishRepository.save(dish);
     }
 

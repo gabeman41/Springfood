@@ -5,6 +5,8 @@ import com.example.food_app.Service.UserService;
 import com.example.food_app.dto.DishDto;
 import com.example.food_app.model.Dish;
 import com.example.food_app.model.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,8 @@ import java.util.List;
 @RequestMapping("/api/dishes")
 @RequiredArgsConstructor
 public class DishController {
-    DishService dishService;
-    UserService userService;
+    private final  DishService dishService;
+    private final  UserService userService;
 
     @GetMapping("/search")
     public ResponseEntity<List<Dish>> searchDish(@RequestHeader("Authorization") String jwt,
@@ -37,17 +39,18 @@ public class DishController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Dish> findDishById(@RequestHeader("Authorization") String jwt,
-                                                   @PathVariable Long Id) throws Exception{
+                                                   @PathVariable Long id) throws Exception{
         User user = userService.findUserByJwtToken(jwt);
-        Dish dish = dishService.getDishByUserId(Id);
+        Dish dish = dishService.getDishByUserId(id);
         return new ResponseEntity<>(dish,HttpStatus.OK);
     }
 
     @PutMapping("/{id}/add-favorite")
-    public ResponseEntity<DishDto> addFavorites(@RequestHeader("Authorization") String jwt,
-                                             @PathVariable Long Id) throws Exception{
+    public ResponseEntity<DishDto> addFavorites(@PathVariable Long id,
+            @RequestHeader("Authorization") String jwt
+                                             ) throws Exception{
         User user = userService.findUserByJwtToken(jwt);
-        DishDto dish = dishService.addToFavorite(Id,user);
+        DishDto dish = dishService.addToFavorite(id,user);
         return  new ResponseEntity<>(dish,HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.food_app.Service.ServiceImpl;
 
+import com.example.food_app.Request.IngredientCategoryRequest;
 import com.example.food_app.Service.DishService;
 import com.example.food_app.Service.IngredientsService;
 import com.example.food_app.model.Dish;
@@ -16,9 +17,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class IngredientsServiceImpl implements IngredientsService {
-    IngredientItemRepository ingredientItemRepository;
-    IngredientCategoryRepository ingredientCategoryRepository;
-    DishService dishService;
+    private final IngredientItemRepository ingredientItemRepository;
+    private final IngredientCategoryRepository ingredientCategoryRepository;
+    private final DishService dishService;
 
     @Override
     public IngredientCategory createIngredientCategory(String name, Long dishId) throws Exception {
@@ -30,6 +31,7 @@ public class IngredientsServiceImpl implements IngredientsService {
         category.setName(name);
         return ingredientCategoryRepository.save(category);
     }
+
 
     @Override
     public IngredientCategory findIngredientCategoryById(Long Id) throws Exception {

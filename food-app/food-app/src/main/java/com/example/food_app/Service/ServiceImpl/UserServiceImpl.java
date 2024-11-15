@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    UserRepository userRepository;
-    JwtProvider jwtProvider;
+    private final UserRepository userRepository;
+    private final JwtProvider jwtProvider;
 
     @Override
     public User findUserByJwtToken(String jwt) throws Exception {

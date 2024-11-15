@@ -18,10 +18,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
-    UserService userService;
-    CartItemRepository cartItemRepository;
-    CartRepository cartRepository;
-    FoodService foodService;
+   private final UserService userService;
+    private final  CartItemRepository cartItemRepository;
+    private final CartRepository cartRepository;
+    private final  FoodService foodService;
 
     @Override
     public CartItem addItemToCart(AddCartItemRequest request, String jwt) throws Exception {

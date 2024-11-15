@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AdminOrderController {
-    UserService userService;
-    OrderService orderService;
+    private final  UserService userService;
+    private final OrderService orderService;
 
     @GetMapping("/order/dish/{id}")
     public ResponseEntity<List<Order>> getOrderHistory(

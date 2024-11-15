@@ -1,6 +1,8 @@
 package com.example.food_app.enums;
 
-public enum USER_ROLE {
+import java.io.Serializable;
+
+public enum USER_ROLE implements Serializable {
     ROLE_CUSTOMER,
     ROLE_RESTAURANT_OWNER,
     ROLE_ADMIN

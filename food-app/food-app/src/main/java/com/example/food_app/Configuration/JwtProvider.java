@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Service
 public class JwtProvider {
-    private SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+    private final SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
 
     // method to generate Token
     public String generateToken(Authentication auth){

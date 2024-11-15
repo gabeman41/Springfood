@@ -17,8 +17,8 @@ import java.util.List;
 @RequestMapping("/api/food")
 @RequiredArgsConstructor
 public class FoodController {
-    FoodService foodService;
-    UserService userService;
+    private final FoodService foodService;
+    private final  UserService userService;
 
     @GetMapping("/search")
     public ResponseEntity<List<Food>> searchFood(@RequestHeader("Authorization") String jwt,

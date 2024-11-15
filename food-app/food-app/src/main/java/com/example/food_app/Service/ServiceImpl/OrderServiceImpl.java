@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    OrderRepository orderRepository;
-    OrderItemRepository orderItemRepository;
-    UserRepository userRepository;
-    DishService dishService;
-    AddressRepository addressRepository;
-    CartService cartService;
+    private final  OrderRepository orderRepository;
+    private final  OrderItemRepository orderItemRepository;
+    private final UserRepository userRepository;
+    private final  DishService dishService;
+    private final  AddressRepository addressRepository;
+    private final  CartService cartService;
 
     @Override
     public Order createOrder(OrderRequest order, User customer) throws Exception {

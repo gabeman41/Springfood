@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class CategoryController {
-    CategoryService categoryService;
-    UserService userService;
+    private final CategoryService categoryService;
+    private final UserService userService;
 
     @PostMapping("/admin/category")
     public ResponseEntity<Category> createCategory(@RequestBody Category category,
@@ -26,10 +26,12 @@ public class CategoryController {
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
 
-    @GetMapping("/category/dish")
-    public ResponseEntity<List<Category>> getDishCategory(@RequestHeader("Authorization") String jwt) throws Exception{
+    @GetMapping("/category/dish/{id}")
+    public ResponseEntity<List<Category>> getDishCategory(
+            @PathVariable Long id,
+            @RequestHeader("Authorization") String jwt) throws Exception{
         User user = userService.findUserByJwtToken(jwt);
-        List<Category> categories = categoryService.findCategoryByDishId(user.getId());
+        List<Category> categories = categoryService.findCategoryByDishId(id);
         return new ResponseEntity<>(categories,HttpStatus.OK);
     }
 }

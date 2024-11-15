@@ -1,14 +1,22 @@
 package com.example.food_app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class IngredientCategory {
 
     @Id
@@ -21,7 +29,9 @@ public class IngredientCategory {
     @ManyToOne
     private Dish dish;
 
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<IngredientItem> ingredients = new ArrayList<>();
+   private List<IngredientItem>ingredients = new ArrayList<>();
+
 
 }

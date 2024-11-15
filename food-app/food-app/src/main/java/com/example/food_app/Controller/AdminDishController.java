@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/admin/dishes")
 @RequiredArgsConstructor
 public class AdminDishController {
-    DishService dishService;
-    UserService userService;
+    private final DishService dishService;
+    private final  UserService userService;
 
     @PostMapping()
     public ResponseEntity<Dish> createRequest(@RequestBody CreateDishRequest request,

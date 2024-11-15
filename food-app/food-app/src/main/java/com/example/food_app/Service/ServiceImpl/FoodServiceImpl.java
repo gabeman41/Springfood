@@ -9,6 +9,7 @@ import com.example.food_app.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,13 +17,13 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class FoodServiceImpl implements FoodService {
-    FoodRepository foodRepository;
+    private final  FoodRepository foodRepository;
 
     @Override
     public Food createFood(CreateFoodRequest request, Category category, Dish dish) {
         // create food object
         Food food = new Food();
-        food.setCategory(category);
+        food.setFoodcategory(category);
         food.setDish(dish);
         food.setDescription(request.getDescription());
         food.setImages(request.getImages());
@@ -31,6 +32,7 @@ public class FoodServiceImpl implements FoodService {
         food.setIngredients(request.getIngredients());
         food.setSeasonal(request.isSeasonal());
         food.setVegetable(request.isVegetables());
+        food.setCreatedDate(new Date());
 
         Food savedFood = foodRepository.save(food);
 
@@ -69,8 +71,8 @@ public class FoodServiceImpl implements FoodService {
 
     private List<Food> filterByCategory(List<Food> foods, String foodCategory) {
         return foods.stream().filter(food -> {
-            if (food.getCategory()!= null){
-                return food.getCategory().getName().equals(foodCategory);
+            if (food.getFoodcategory()!= null){
+                return food.getFoodcategory().getName().equals(foodCategory);
             }
             return false;
         }).collect(Collectors.toList());

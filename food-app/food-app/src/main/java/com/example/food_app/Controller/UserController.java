@@ -8,12 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserController {
-    UserService userService;
+    private final UserService userService;
 
-    @GetMapping("/profile")
+    @GetMapping("/users")
     public ResponseEntity<User>findUserByJwtToken(@RequestHeader("Authorization") String jwt)
             throws Exception {
         User user = userService.findUserByJwtToken(jwt);

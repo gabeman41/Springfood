@@ -1,5 +1,6 @@
 package com.example.food_app.Service;
 
+import com.example.food_app.Request.IngredientCategoryRequest;
 import com.example.food_app.model.IngredientCategory;
 import com.example.food_app.model.IngredientItem;
 

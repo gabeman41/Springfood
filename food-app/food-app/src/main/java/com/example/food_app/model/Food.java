@@ -1,7 +1,11 @@
 package com.example.food_app.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,10 +13,12 @@ import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Food {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -20,7 +26,7 @@ public class Food {
     private Long price;
 
     @ManyToOne
-    private Category category;
+    private Category foodcategory;
 
     @Column(length = 1000)
     @ElementCollection
@@ -34,7 +40,7 @@ public class Food {
     private boolean isVegetable;
     private boolean isSeasonal;
 
-    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL)
+    @ManyToMany
     private List<IngredientItem> ingredients = new ArrayList<>();
 
     private Date createdDate;

@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class OrderController {
-    OrderService orderService;
-    UserService userService;
+    private final OrderService orderService;
+    private final UserService userService;
 
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(
