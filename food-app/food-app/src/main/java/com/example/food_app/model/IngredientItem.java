@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class IngredientItem  implements Serializable {
+public class IngredientItem  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,7 @@ public class IngredientItem  implements Serializable {
 
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private IngredientCategory category;
 
     @JsonIgnore

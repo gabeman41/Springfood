@@ -13,8 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class IngredientCategory {
@@ -29,9 +30,9 @@ public class IngredientCategory {
     @ManyToOne
     private Dish dish;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-   private List<IngredientItem>ingredients = new ArrayList<>();
+    private List<IngredientItem>ingredients = new ArrayList<>();
 
 
 }

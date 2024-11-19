@@ -41,6 +41,7 @@ public class Dish {
 
     private String openingHour;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
